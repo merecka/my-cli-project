@@ -1,5 +1,5 @@
 #!/usr/local/bin/ruby -w
-# require_relative "../lib/scraper.rb"
+require_relative "../lib/scraper.rb"
 require 'nokogiri'
 require 'pry'
 
@@ -7,6 +7,7 @@ class CommandLineInterface
 
   def run
     surf_spot_menu
+    choose_option
   end
 
   def surf_spot_menu
@@ -14,7 +15,7 @@ class CommandLineInterface
     puts "  Choose which surf spot you would like to see by typing the corresponding number."
     puts "  1.  Playa Santana"
     choice_1 = gets.chomp
-    Scraper.scrape_surf_forecast_page(choice_1)
+    # Scraper.scrape_surf_forecast_page(choice_1)
     choose_option(choice_1)
   end
 
