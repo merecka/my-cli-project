@@ -1,10 +1,15 @@
-require_relative "../lib/scraper.rb"
+#!/usr/local/bin/ruby -w
+# require_relative "../lib/scraper.rb"
 require 'nokogiri'
 require 'pry'
 
 class CommandLineInterface
 
-  def surf_spot
+  def run
+    surf_spot_menu
+  end
+
+  def surf_spot_menu
     puts "Welcome to the Daily Surf Forecast:"
     puts "  Choose which surf spot you would like to see by typing the corresponding number."
     puts "  1.  Playa Santana"
@@ -30,3 +35,5 @@ class CommandLineInterface
   end
 
 end
+
+CommandLineInterface.new.run

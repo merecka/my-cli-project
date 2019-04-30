@@ -1,5 +1,6 @@
+#!/usr/local/bin/ruby -w
 require 'open-uri'
-require 'nokogir'
+require 'nokogiri'
 require 'pry'
 
 class Scraper
@@ -9,6 +10,8 @@ class Scraper
   def self.scrape_magicseaweed_page(choice)
     html = open(msw_url[:choice])
     doc = Nokogiri::HTML(html)
+    binding.pry
+    doc.css(".hidden-xs heavy").text
   end
 
   def self.scrape_surf_forecast_page(choice)
