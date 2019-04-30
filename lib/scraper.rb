@@ -11,9 +11,9 @@ class Scraper
     doc = Nokogiri::HTML(html)
   end
 
-  def self.scrape_surf_forecast_page
-    forecast_urls = [http://www.surf-forecast.com/breaks/Playa-Santa-Teresa]
-    html = open(url)
+  def self.scrape_surf_forecast_page(choice)
+    forecast_url = {"1" => "http://www.surf-forecast.com/breaks/Playa-Santa-Teresa"}
+    html = open(forecast_url[:choice])
     doc = Nokogiri::HTML(html)
   end
 
