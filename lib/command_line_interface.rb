@@ -15,16 +15,21 @@ class CommandLineInterface
   def surf_region_menu
     puts "Welcome to the Daily Surf Forecast!"
     puts "\n"
-    puts "Choose which surf region you would like to see by typing the corresponding number."
+
+    region_list_hash = {}
     Scraper.all.each do |scrape|
       counter = 1
-    #  binding.pry
       scrape.cr_region_hash.each_key do |key|
+        region_list_hash[counter] = key
         puts "#{counter}.  #{key}"
         counter += 1
       end
-    end
+      puts "Choose which surf region you would like to see by typing the corresponding number."
+      choice = gets.chomp
 
+      region_to_scrape = region_list_hash[choice]
+      binding.pry
+    end
   end
 
   def surf_spot_menu

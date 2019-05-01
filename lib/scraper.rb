@@ -28,10 +28,9 @@ class Scraper
 
   @@msw_url = {1 => "https://magicseaweed.com/Playa-Santa-Teresa-Surf-Report/914/"}
 
-  def scrape_msw_costarica_page
+  def scrape_msw_costarica_region_page
     html = open("https://magicseaweed.com/Central-America-South-Surf-Forecast/29/")
     doc = Nokogiri::HTML(html)
-    # cr_region_hash = {}
     cr_regions = doc.css(".nomargin-top")[1..5]
     cr_regions.each do |region|
       region_name = region["title"]
@@ -40,6 +39,10 @@ class Scraper
     end
     # region name = doc.css(".nomargin-top")[1]["title"]
     # urls = doc.css(".nomargin-top")[1]["href"]
+  end
+
+  def scrape_msw_region_surfspot_page
+
   end
 
   def scrape_magicseaweed_page(choice)
