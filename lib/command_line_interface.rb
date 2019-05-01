@@ -6,8 +6,20 @@ require 'pry'
 class CommandLineInterface
 
   def run
-    surf_spot_menu
-    choose_option
+    Scraper.new.run
+    surf_region_menu
+    # surf_spot_menu
+    # choose_option
+  end
+
+  def surf_region_menu
+    puts "Welcome to the Daily Surf Forecast:"
+    puts "  Choose which surf region you would like to see by typing the corresponding number."
+    counter = 1
+    Scraper.cr_region_hash.each_key do |key|
+      puts "#{counter}. + key"
+      counter += 1
+    end
   end
 
   def surf_spot_menu

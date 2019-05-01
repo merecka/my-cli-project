@@ -5,9 +5,17 @@ require 'pry'
 
 class Scraper
 
+  attr_accessor  :cr_region_hash
+
+  def initialize
+    @cr_region_hash = {}
+  end
+
+  BASE_PATH = "https://magicseaweed.com"
+
   def run
     scrape_msw_costarica_page
-    scrape_magicseaweed_page(1)
+    # scrape_magicseaweed_page(1)
     # scrape_surf_forecast_page(1)
   end
 
@@ -16,9 +24,15 @@ class Scraper
   def scrape_msw_costarica_page
     html = open("https://magicseaweed.com/Central-America-South-Surf-Forecast/29/")
     doc = Nokogiri::HTML(html)
+    # cr_region_hash = {}
+    cr_regions = doc.css(".nomargin-top")[1..5]
+    cr_regions.each do |region|
+      region_name = region["title"]
+      region_url = region["href"]
+      self.cr_region_hash[region_name] = BASE_PATH + region_url
+    end
     # region name = doc.css(".nomargin-top")[1]["title"]
     # urls = doc.css(".nomargin-top")[1]["href"]
-    binding.pry
   end
 
   def scrape_magicseaweed_page(choice)
