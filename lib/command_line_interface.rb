@@ -13,13 +13,18 @@ class CommandLineInterface
   end
 
   def surf_region_menu
-    puts "Welcome to the Daily Surf Forecast:"
-    puts "  Choose which surf region you would like to see by typing the corresponding number."
-    counter = 1
-    Scraper.cr_region_hash.each_key do |key|
-      puts "#{counter}. + key"
-      counter += 1
+    puts "Welcome to the Daily Surf Forecast!"
+    puts "\n"
+    puts "Choose which surf region you would like to see by typing the corresponding number."
+    Scraper.all.each do |scrape|
+      counter = 1
+    #  binding.pry
+      scrape.cr_region_hash.each_key do |key|
+        puts "#{counter}.  #{key}"
+        counter += 1
+      end
     end
+
   end
 
   def surf_spot_menu

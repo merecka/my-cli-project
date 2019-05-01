@@ -7,11 +7,18 @@ class Scraper
 
   attr_accessor  :cr_region_hash
 
+  @@all = []
+
   def initialize
     @cr_region_hash = {}
+    @@all << self
   end
 
   BASE_PATH = "https://magicseaweed.com"
+
+  def self.all
+    @@all
+  end
 
   def run
     scrape_msw_costarica_page
@@ -53,5 +60,3 @@ class Scraper
   end
 
 end
-
-Scraper.new.run
