@@ -6,13 +6,20 @@ require 'pry'
 class Scraper
 
   def run
+    scrape_msw_costarica_page
     scrape_magicseaweed_page(1)
     # scrape_surf_forecast_page(1)
   end
 
   @@msw_url = {1 => "https://magicseaweed.com/Playa-Santa-Teresa-Surf-Report/914/"}
 
-  def scrape_msw_costarica_page(url)
+  def scrape_msw_costarica_page
+    html = open("https://magicseaweed.com/Central-America-South-Surf-Forecast/29/")
+    doc = Nokogiri::HTML(html)
+    # region name = doc.css(".nomargin-top")[1]["title"]
+    # urls = doc.css(".nomargin-top")[1]["href"]
+    binding.pry
+  end
 
   def scrape_magicseaweed_page(choice)
     html = open(@@msw_url[choice])
