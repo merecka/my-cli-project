@@ -21,7 +21,7 @@ class Scraper
   end
 
   def run
-    scrape_msw_costarica_page
+    scrape_msw_costarica_region_page
     # scrape_magicseaweed_page(1)
     # scrape_surf_forecast_page(1)
   end
@@ -41,8 +41,10 @@ class Scraper
     # urls = doc.css(".nomargin-top")[1]["href"]
   end
 
-  def scrape_msw_region_surfspot_page
-
+  def scrape_msw_region_surfspot_page(url)
+    html = open(url)
+    doc = Nokogiri::HTML(html)
+    binding.pry
   end
 
   def scrape_magicseaweed_page(choice)

@@ -27,10 +27,10 @@ class CommandLineInterface
 
       puts "Choose which surf region you would like to see by typing the corresponding number."
       choice = gets.chomp
+      choice = choice.to_i
       if choice.to_i >= 1 && choice.to_i <= scrape.cr_region_hash.length
         region_to_scrape = region_list_hash[choice]
         scrape.scrape_msw_region_surfspot_page(scrape.cr_region_hash[region_to_scrape])
-        binding.pry
       else
         puts "Please enter a number corresponding to the surf region you would like to see."
       end
