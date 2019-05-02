@@ -44,7 +44,15 @@ class Scraper
   def scrape_msw_region_surfspot_page(url)
     html = open(url)
     doc = Nokogiri::HTML(html)
+
+    data = doc.css(".msw-js-spot-list")[0]
     binding.pry
+    data.each do |item|
+      #binding.pry
+      item.css(".data-collection")
+      #binding.pry
+    end
+    # binding.pry
   end
 
   def scrape_magicseaweed_page(choice)
