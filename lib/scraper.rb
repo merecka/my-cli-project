@@ -48,12 +48,23 @@ class Scraper
     data = doc.css("[data-collection]")[0]
     data_hash = data.to_h
     data_array = data_hash["data-collection"].split(',')
+    name_array_split = []
+    name_array = []
+    url_array_split = []
+    url_array = []
     data_array.each do |x|
-      x.include? "name"
-        name_array = x.split(':')
-      x.include? "url"
-        url_array = x.split(':')
-      binding.pry
+      if x.include? "name"
+        name_array << x.split(':').flatten[1][/\w+\s*\w+/]
+      elsif x.include? "url"
+        url_array_split = x.split(':')
+        url_array_split = url_array_split.flatten
+        binding.pry
+        url_array << url_array_split[1].gsub!('\/', '')
+
+        # .flatten[1][/\w+-*/]
+        # [1][/\w+-*/]
+      end
+      # binding.pry
     end
     binding.pry
     data_hash.each do |key, value|
