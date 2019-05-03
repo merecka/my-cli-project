@@ -5,12 +5,13 @@ require 'pry'
 
 class Scraper
 
-  attr_accessor  :cr_region_hash
+  attr_accessor  :cr_region_hash, :cr_surfspot_hash
 
   @@all = []
 
   def initialize
     @cr_region_hash = {}
+    @cr_surfspot_hash = {}
     @@all << self
   end
 
@@ -54,22 +55,20 @@ class Scraper
     url_array = []
     data_array.each do |x|
       if x.include? "name"
-        name_array << x.split(':').flatten[1][/\w+\s*\w+/]
+        name_array << x.split(':').flatten[1][/\w+\s*\w+\s*\w+\s*\w+/]
       elsif x.include? "url"
         url_array_split = x.split(':')
         url_array << BASE_PATH.chomp("") + url_array_split.flatten[1].gsub!('\\', '').gsub!("\"", '')
       end
     end
 
-    surf_spot_hash = {}
     name_array.each_with_index do |value,index|
-      surf_spot_hash[value] = url_array[index]
+      self.cr_surfspot_hash[value] = url_array[index]
     end
-    binding.pry
   end
 
-  def scrape_surfspot_page(choice)
-    html = open(@@msw_url[choice])
+  def scrape_surfspot_page(url)
+    html = open(url)
     doc = Nokogiri::HTML(html)
     puts doc.css(".forecast-sub-title-fluid")[0].text.strip + ":"
     puts "Weather: " + doc.css(".list-group-item .nomargin-bottom")[0].text.strip
