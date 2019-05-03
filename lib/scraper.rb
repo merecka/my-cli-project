@@ -45,14 +45,22 @@ class Scraper
     html = open(url)
     doc = Nokogiri::HTML(html)
 
-    data = doc.css(".msw-js-spot-list")[0]
-    binding.pry
-    data.each do |item|
-      #binding.pry
-      item.css(".data-collection")
-      #binding.pry
+    data = doc.css("[data-collection]")[0]
+    data_hash = data.to_h
+    data_array = data_hash["data-collection"].split(',')
+    data_array.each do |x|
+      x.include? "name"
+        name_array = x.split(':')
+      x.include? "url"
+        url_array = x.split(':')
+      binding.pry
     end
-    # binding.pry
+    binding.pry
+    data_hash.each do |key, value|
+      binding.pry
+      puts "#{key} and #{value}"
+      value.split
+    end
   end
 
   def scrape_magicseaweed_page(choice)
