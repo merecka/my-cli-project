@@ -78,10 +78,4 @@ class Scraper
     puts "Tides:  " + doc.css(".col-xs-6:nth-child(1)")[0].text.strip
   end
 
-  # def scrape_surf_forecast_page(choice)
-  #   forecast_url = {"1" => "http://www.surf-forecast.com/breaks/Playa-Santa-Teresa"}
-  #   html = open(forecast_url[:choice])
-  #   doc = Nokogiri::HTML(html)
-  # end
-
 end
