@@ -41,7 +41,7 @@ class Scraper
     # urls = doc.css(".nomargin-top")[1]["href"]
   end
 
-  def scrape_msw_region_surfspot_page(url)
+  def scrape_cr_region_surfspot_page(url)
     html = open(url)
     doc = Nokogiri::HTML(html)
 
@@ -57,19 +57,18 @@ class Scraper
         name_array << x.split(':').flatten[1][/\w+\s*\w+/]
       elsif x.include? "url"
         url_array_split = x.split(':')
-        url_array_split = url_array_split.flatten
-        url_array << BASE_PATH.chomp("") + url_array_split[1].gsub!('\\', '').gsub!("\"", '')
+        url_array << BASE_PATH.chomp("") + url_array_split.flatten[1].gsub!('\\', '').gsub!("\"", '')
       end
     end
 
-    data_hash.each do |key, value|
-      binding.pry
-      puts "#{key} and #{value}"
-      value.split
+    surf_spot_hash = {}
+    name_array.each_with_index do |value,index|
+      surf_spot_hash[value] = url_array[index]
     end
+    binding.pry
   end
 
-  def scrape_magicseaweed_page(choice)
+  def scrape_surfspot_page(choice)
     html = open(@@msw_url[choice])
     doc = Nokogiri::HTML(html)
     puts doc.css(".forecast-sub-title-fluid")[0].text.strip + ":"
@@ -80,10 +79,10 @@ class Scraper
     puts "Tides:  " + doc.css(".col-xs-6:nth-child(1)")[0].text.strip
   end
 
-  def scrape_surf_forecast_page(choice)
-    forecast_url = {"1" => "http://www.surf-forecast.com/breaks/Playa-Santa-Teresa"}
-    html = open(forecast_url[:choice])
-    doc = Nokogiri::HTML(html)
-  end
+  # def scrape_surf_forecast_page(choice)
+  #   forecast_url = {"1" => "http://www.surf-forecast.com/breaks/Playa-Santa-Teresa"}
+  #   html = open(forecast_url[:choice])
+  #   doc = Nokogiri::HTML(html)
+  # end
 
 end
