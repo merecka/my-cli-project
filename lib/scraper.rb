@@ -58,15 +58,10 @@ class Scraper
       elsif x.include? "url"
         url_array_split = x.split(':')
         url_array_split = url_array_split.flatten
-        binding.pry
-        url_array << url_array_split[1].gsub!('\/', '')
-
-        # .flatten[1][/\w+-*/]
-        # [1][/\w+-*/]
+        url_array << BASE_PATH.chomp("") + url_array_split[1].gsub!('\\', '').gsub!("\"", '')
       end
-      # binding.pry
     end
-    binding.pry
+
     data_hash.each do |key, value|
       binding.pry
       puts "#{key} and #{value}"
