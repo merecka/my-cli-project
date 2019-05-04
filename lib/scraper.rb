@@ -21,6 +21,10 @@ class Scraper
     @@all
   end
 
+  def self.clear
+    all.clear
+  end
+
   def run
     scrape_msw_costarica_region_page
   end
