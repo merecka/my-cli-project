@@ -54,7 +54,7 @@ class Scraper
       if x.include? "name"
         name_array << x.split(':').flatten[1][/\w+\s*\w+\s*\w+\s*\w+/]
       elsif x.include? "url"
-        url_array << BASE_PATH.chomp("") + x.split(':').flatten[1].gsub!('\\', '').gsub!("\"", '')
+        url_array << BASE_PATH + x.split(':').flatten[1].gsub!('\\', '').gsub!("\"", '')
       end
     end
 
