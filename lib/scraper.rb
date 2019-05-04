@@ -23,11 +23,8 @@ class Scraper
 
   def run
     scrape_msw_costarica_region_page
-    # scrape_magicseaweed_page(1)
-    # scrape_surf_forecast_page(1)
   end
 
-  @@msw_url = {1 => "https://magicseaweed.com/Playa-Santa-Teresa-Surf-Report/914/"}
 
   def scrape_msw_costarica_region_page
     html = open("https://magicseaweed.com/Central-America-South-Surf-Forecast/29/")
@@ -38,8 +35,6 @@ class Scraper
       region_url = region["href"]
       self.cr_region_hash[region_name] = BASE_PATH + region_url
     end
-    # region name = doc.css(".nomargin-top")[1]["title"]
-    # urls = doc.css(".nomargin-top")[1]["href"]
   end
 
   def scrape_cr_region_surfspot_page(url)
@@ -49,16 +44,13 @@ class Scraper
     data = doc.css("[data-collection]")[0]
     data_hash = data.to_h
     data_array = data_hash["data-collection"].split(',')
-    name_array_split = []
     name_array = []
-    url_array_split = []
     url_array = []
     data_array.each do |x|
       if x.include? "name"
         name_array << x.split(':').flatten[1][/\w+\s*\w+\s*\w+\s*\w+/]
       elsif x.include? "url"
-        url_array_split = x.split(':')
-        url_array << BASE_PATH.chomp("") + url_array_split.flatten[1].gsub!('\\', '').gsub!("\"", '')
+        url_array << BASE_PATH.chomp("") + x.split(':').flatten[1].gsub!('\\', '').gsub!("\"", '')
       end
     end
 
@@ -70,6 +62,7 @@ class Scraper
   def scrape_surfspot_page(url)
     html = open(url)
     doc = Nokogiri::HTML(html)
+    puts "\n"
     puts doc.css(".forecast-sub-title-fluid")[0].text.strip + ":"
     puts "Weather: " + doc.css(".list-group-item .nomargin-bottom")[0].text.strip
     puts "Winds: " + doc.css(".h5.nomargin-top").text
