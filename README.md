@@ -1,12 +1,11 @@
-HELLO WORLD
-ANOTHER HELLO WORLD
-AND ONE MORE
 
 # My::Cli::Project
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/my/cli/project`. To experiment with that code, run `bin/console` for an interactive prompt.
+<!-- Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/my/cli/project`. To experiment with that code, run `bin/console` for an interactive prompt.
 
-TODO: Delete this and the text above, and describe your gem
+TODO: Delete this and the text above, and describe your gem -->
+
+Hello and thank you for checking out my Costa Rica Daily Surf Report gem.  I wrote this gem as my CLI project for the FlatIron Software Engineering Bootcamp program.  As I am an avid surfer and Costa Rica is one of my favorite surfing destinations, I thought it would be cool to have a Costa Rica Daily surf report gem.  This is my first computer program that I've ever written from scratch and it was a good learning experience for me.  The data from this comes from the MagicSeaweed website and uses Nokogiri to scrape the HTML / CSS data, therefore if data does not appear correctly, it may be because some of the HTML / CSS / links have changed since this gem was published.
 
 ## Installation
 
@@ -26,7 +25,9 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+<!-- TODO: Write usage instructions here -->
+
+Navigating through this gem is pretty straightforward.  Execute the gem by typing 'ruby command_line_interface.rb' from the terminal and then follow the menu prompts to view the daily surf reports (pulled from MagicSeaweed) for various surf spots located throughout Costa Rica.
 
 ## Development
 
